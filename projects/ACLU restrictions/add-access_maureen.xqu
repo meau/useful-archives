@@ -1,0 +1,67 @@
+xquery version "1.0";
+
+(: EAD namespace declaration :)
+declare namespace ead="urn:isbn:1-931666-22-9";
+
+(:-------------------------------------------------------------
+Put all files in the same directory (or change paths)
+- add-access_maureen.xqu (this file)
+- MC001.04.EAD.xml
+- get-open-date.xq
+- corp_name_lookup.xml
+Adjust $current-year and the series blocks
+To do the update, uncomment the 'insert nodes...' and '...as last into' 
+blocks in the last lines.
+** The @normal and @unitdate at the bottom are for debugging only
+----------------------------------------------------------------:)
+
+(: functx library :)
+import module namespace functx="http://www.functx.com" 
+    at "http://www.xqueryfunctions.com/xq/functx-1.0-doc-2007-01.xq";
+
+(: our own library to process dates :)
+import module namespace local="local.uri" at "get-open-date.xq";
+
+(: FILE refers to collection :)
+declare variable $FILE as document-node()* := doc("MC001.04.EAD.xml");
+
+(: LOOKUP is the list of corpnames :)
+declare variable $LOOKUP as document-node()* := doc("corp_name_lookup.xml");
+
+(: can set current year here:)
+declare variable $current-year as xs:integer? := 2013;
+
+for $i in $FILE//ead:dsc
+(:-----------------------------------------------------------------------------------
+   uncomment only one of the series variables below (highlight then ctrl+shift+,)
+-----------------------------------------------------------------------------------:)
+   (: SERIES 1 :) 
+    let $corp := $i/ead:c[1]/ead:c/ead:did/ead:origination/ead:corpname,
+    $series := 1
+   (: SERIES 2 :) 
+    (:let $corp := $i/ead:c[2]/ead:c/ead:did/ead:origination/ead:corpname, 
+    $series := 2 :)
+    for $thisc in $corp
+        return 
+            if ($thisc = $LOOKUP//name) then
+                for $unitdate as element() in $thisc[1]/parent::ead:origination/parent::ead:did/following-sibling::ead:c//ead:unitdate
+                    let $this-child-c := $unitdate/ancestor::ead:c[1]
+                    let $this-id := $unitdate/ancestor::ead:c[1]/@id
+                    let $thisdate-norm as xs:string? := $unitdate/@normal/string(),
+                    (:get the most recent dates, which are after the / :)
+                    $date-param := if ($unitdate eq 'undated') then ( functx:substring-after-match($thisc/ancestor::ead:did/ead:unitdate/@normal/string(),'/') ) else (functx:substring-after-match($thisdate-norm,'/')),
+                    $open-date as xs:string? := local:get-open-date($date-param, $series, $current-year),
+                    (: Below, get the last four characters if there are non-numeric characters in the string (i.e. 'March'), otherwise just return the numeric value :)
+                    $open-year := if (matches($open-date,'[a-zA-Z]*')) then (substring( $open-date,string-length($open-date) - 4)) else ($open-date)
+                    return 
+                    if (number($open-year) >  $current-year) then (
+                     (:insert nodes :)
+                   <accessrestrict><p>This material is closed due to the ACLU's administrative restriction. Material will be open in {$open-date}.</p></accessrestrict>
+                     (:as last into $this-child-c:)
+                   ) else (
+                    (:insert nodes :)
+                   <accessrestrict><p>These records are open.</p></accessrestrict>   
+                    (:as last into $this-child-c:)
+                   )
+            else()
+            
