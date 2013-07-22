@@ -1,1 +1,1 @@
-local schema to enforce a tighter implementation of EAD
+XSL-FO of varying degrees of usefulness and horror
