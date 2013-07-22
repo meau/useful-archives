@@ -1,0 +1,19 @@
+xquery version "1.0";
+
+(:This document only works if pdfs are named the same as cids. Be sure to change the dao URL and the $FILE varialble.:)
+
+declare namespace ead="urn:isbn:1-931666-22-9";
+declare namespace xlink = "http://www.w3.org/1999/xlink";
+import module namespace functx="http://www.functx.com" 
+    at "http://www.xqueryfunctions.com/xq/functx-1.0-doc-2007-01.xq";
+
+declare variable $FILE as document-node()* := doc("MC074.EAD.xml");
+
+for $i in $FILE//ead:dsc
+let $id := $i/ead:c[2]/ead:c/@id,
+$inside-did := $id/ancestor::ead:c[2]/ead:c/ead:did,
+$eadid := //ead:eadid
+return
+insert nodes
+<dao xmlns:xlin="http://www.w3.org/1999/xlink" xlin:href="https://webshare.princeton.edu/users/mudd/Digitization/{$eadid}/{$id}.pdf" xlin:type="simple"/>
+as last into $inside-did
