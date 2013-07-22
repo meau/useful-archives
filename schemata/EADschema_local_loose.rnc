@@ -1,0 +1,1139 @@
+default namespace = "urn:isbn:1-931666-22-9"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+namespace xlink = "http://www.w3.org/1999/xlink"
+namespace xsi = "http://www.w3.org/2001/XMLSchema-instance"
+
+# IN PROGRESS
+# local EAD schema to validate EAD files against Best Practices
+
+# Note on dates: couldn't find a syntax to enable multi-line mode, so I just put optional line breaks in the regex wherever possible. Hope it flies (seems to).
+# Further note on dates: The error message this returns is confusing. It'll say "must be equal to undated" whenever the @normal is missing.
+
+grammar {
+   start = EAD
+   EAD = 
+   ## Element ead must contain elements eadheader and archdesc and attribute xsi:schema. 
+   ## Attribute xsi:schema must be set to "urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd".
+   ## May contain attribute audience.
+       element ead {
+           attribute xsi:schemaLocation{"urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"} & 
+           AudienceAttr? &
+           Eadheader &
+           Archdesc      
+       }
+
+       
+ AudienceAttr = 
+ ## Attribute audience must have value "internal" or "external".
+    attribute audience{xsd:string{pattern='(internal)|(external)'}} 
+       
+ Eadheader =
+ ## Element eadheader must contain elements eadid, filedesc, profiledesc, and revisiondesc, 
+ ## and attributes repositoryencoding, countryencoding, dateencoding, langencoding, relatedencoding, and scriptencoding.
+ ## Attribute repositoryencoding must be set to "iso15511".
+ ## Attribute countryencoding must be set to "iso3166-1".
+ ## Attribute dateenecoding must be set to "iso8601".
+ ## Attribute langencoding must be set to "iso639-2b".
+ ## Attribute relatedencoding must be set to "Dublin Core".
+ ## Attribute scriptencoding must be set to "iso15924".
+    element eadheader{
+        attribute repositoryencoding{"iso15511"} &
+        attribute countryencoding{"iso3166-1"} &
+        attribute dateencoding{"iso8601"} &
+        attribute langencoding{"iso639-2b"} &
+        attribute relatedencoding{"Dublin Core"} &
+        attribute scriptencoding{"iso15924"} &
+        Eadid &
+        Filedesc &
+        Profiledesc &
+        Revisiondesc}
+        
+ Eadid = 
+ ## Element eadid must contain PCDATA and attributes countrycode, encodinganalog, mainagencycode, url, and urn.
+ ## Attribute mainaigencycode must be set to "US-NjP".
+    element eadid{
+        CountrycodeAttr &
+        EncodinganalogAttr &
+        attribute mainagencycode{"US-NjP"} &
+        URLAttr &
+        URNAttr &
+        xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+    
+ URLAttr = 
+ ## Attribute url must contain a url in the format http://arks.princeton.edu/ark:/[a-z0-9/]{1,20}.
+    attribute url {xsd:string { pattern = 'http://arks.princeton.edu/ark:/[a-z0-9/]{1,20}' }}
+    
+ URNAttr = 
+ ## Attribute urn must contain a urn in the format ark:/[a-z0-9/]{1,20}.
+    attribute urn {xsd:string { pattern = 'ark:/[a-z0-9/]{1,20}' }}
+    
+ Filedesc = 
+ ## Element filedesc must contain elements titlestmt and publicationstmt.
+    element filedesc{
+        Titlestmt &
+        Publicationstmt
+    }
+    
+ Titlestmt = 
+ ## Element titlestmt must contain element titleproper and may contain multiple sponsor elements.
+    element titlestmt{
+        Titleproper &
+        Sponsor*}
+        
+ Titleproper = 
+ ## Element titleproper must contain PCDATA and at least a date element and may contain multiple emph elements.
+    element titleproper{
+        EncodinganalogAttr &
+        (mixed {Date_TitleproperAndPublicationstmt}+ &
+        Emph*)
+    }
+    
+ Sponsor = 
+ ## Element sponsor may not be empty.
+    element sponsor{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+    
+ Publicationstmt = 
+ ## Element publicationstmt must contain elements publisher, address, and date and attribute id.
+ ## Attribute id must be set to rbscAddress or muddAddress or LAEaddress or gaAddress or rarebooksAddress or engAddress.
+    element publicationstmt{
+        attribute id {xsd:string{pattern='(rbscAddress)|(muddAddress)|(LAEaddress)|(gaAddress)|(rarebooksAddress)|(engAddress)'}} &
+        Publisher &
+        Address &
+        Date_TitleproperAndPublicationstmt
+    }
+    
+ IdAttr = 
+ ## Attribute id may not start with "ref"; must start with format "eadid_"
+    attribute id {xsd:string { pattern = '\p{L}{1,5}\-?\d{1,7}\.?\d?\d?\d?\p{L}?((\.?\d?\d?)|(-?\d{1,2}))_.*' }}
+    
+ Publisher = 
+ ## Element publisher must contain PCDATA and attribute encodinganalog.
+    element publisher {
+        EncodinganalogAttr &
+        xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+    
+ Address = 
+ ## Element address must contain one or more elements addressline.
+    element address{
+        Addressline+
+    }
+    
+ Addressline = 
+ ## Element addressline may not be empty. 
+    element addressline{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+        
+   Date_TitleproperAndPublicationstmt = 
+   ## Element date must contain either both free text and a normal attribute, or the string "undated" and no normal attribute.
+   ## Element date must contain attribute encodinganalog and may contain attribute type.
+   ## Attribute encodinganalog must be set to "dc:date".
+    element date {
+        attribute encodinganalog {string "dc:date"} &
+        TypeAttr? &
+         ((text & NormalAttr) | string "undated")
+        }
+        
+  Date =    
+   ## Element date must contain either both free text and a normal attribute, or the string "undated" and no normal attribute.
+   ## Element date may contain attribute type.
+    element date {
+        TypeAttr? &
+         ((text & NormalAttr) | string "undated")
+         }
+    
+  Date_Revisiondesc = 
+  ## Element date must contain either a date in DateTime format and a normal attribute, or the string "undated" and no normal attribute.
+   ## Element date may contain attribute type.
+     element date {
+        TypeAttr? &
+        ((xsd:string{pattern='\d{4}\-\d{2}\-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1,3}\-\d{2}:\d{2}'} & NormalAttr) | string "undated")
+         }
+    
+ Profiledesc = 
+ ## Element profiledesc must contain elements creation, langusage, and descrules.
+    element profiledesc{
+        Creation &
+        Langusage &
+        Descrules
+    }
+    
+ Creation = 
+ ## Element creation must contain PCDATA and a date element.
+    element creation{
+        mixed{Date_Creation}
+    }
+    
+   Date_Creation = 
+   ## Element date must contain either a date in DateTime format and a normal attribute, or free text and a normal attribute, 
+   ## or the string "undated" and no normal attribute.
+   ## Element date may contain attribute type.
+     element date {
+        TypeAttr? &
+        ((xsd:string{pattern='\d{4}|\d{4}\-\d{2}\-\d{2}T\d{2}:\d{2}-\d{4}'} & NormalAttr) | (text & NormalAttr) | string "undated")
+         }
+    
+ EncodinganalogAttr = 
+ ## Attribute encodinganalog may not be empty.
+    attribute encodinganalog{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+    
+ Langusage = 
+ ## Element langusage must contain one or more language elements.
+    element langusage{
+        Language_Langusage_HL+
+    }
+    
+ Language_Langusage_HL = 
+ ## Element language must contain attribute encodinganalog and langcode.
+ ## Attribute encodinganalog must be set to dc:language.
+    element language{
+        attribute encodinganalog{"dc:language"} &
+        LangcodeAttr}
+        
+  LangcodeAttr = 
+  ## Attribute langcode must conform to ISO language codes at http://www.loc.gov/standards/iso639-2/php/code_list.php.
+    attribute langcode{xsd:string{pattern='(aar)|(aa)|(abk)|(ab)|(ace)|(ach)|(ada)|(ady)|(afa)|(afh)|(afr)|(af)|(ain)|(aka)|(ak)|(akk)|(alb)|(sqi)|(sq)|(ale)|(alg)|(alt)|(amh)|(am)|(ang)|(anp)|(apa)|(ara)|(ar)|(arc)|(arg)|(an)|(arm)|(hye)|(hy)|(arn)|(arp)|(art)|(arw)|(asm)|(as)|(ast)|(ath)|(aus)|(ava)|(av)|(ave)|(ae)|(awa)|(aym)|(ay)|(aze)|(az)|(bad)|(bai)|(bak)|(ba)|(bal)|(bam)|(bm)|(ban)|(baq)|(eus)|(eu)|(bas)|(bat)|(bej)|(bel)|(be)|(bem)|(ben)|(bn)|(ber)|(bho)|(bih)|(bh)|(bik)|(bin)|(bis)|(bi)|(bla)|(bnt)|(bos)|(bs)|(bra)|(bre)|(br)|(btk)|(bua)|(bug)|(bul)|(bg)|(bur)|(mya)|(my)|(byn)|(cad)|(cai)|(car)|(cat)|(ca)|(cau)|(ceb)|(cel)|(cha)|(ch)|(chb)|(che)|(ce)|(chg)|(chi)|(zho)|(zh)|(chk)|(chm)|(chn)|(cho)|(chp)|(chr)|(chu)|(cu)|(chv)|(cv)|(chy)|(cmc)|(cop)|(cor)|(kw)|(cos)|(co)|(cpe)|(cpf)|(cpp)|(cre)|(cr)|(crh)|(crp)|(csb)|(cus)|(cze)|(ces)|(cs)|(dak)|(dan)|(da)|(dar)|(day)|(del)|(den)|(dgr)|(din)|(div)|(dv)|(doi)|(dra)|(dsb)|(dua)|(dum)|(dut)|(nld)|(nl)|(dyu)|(dzo)|(dz)|(efi)|(egy)|(eka)|(elx)|(eng)|(en)|(enm)|(epo)|(eo)|(est)|(et)|(ewe)|(ee)|(ewo)|(fan)|(fao)|(fo)|(fat)|(fij)|(fj)|(fil)|(fin)|(fi)|(fiu)|(fon)|(fre)|(fra)|(fr)|(frm)|(fro)|(frr)|(frs)|(fry)|(fy)|(ful)|(ff)|(fur)|(gaa)|(gay)|(gba)|(gem)|(geo)|(kat)|(ka)|(ger)|(deu)|(de)|(gez)|(gil)|(gla)|(gd)|(gle)|(ga)|(glg)|(gl)|(glv)|(gv)|(gmh)|(goh)|(gon)|(gor)|(got)|(grb)|(grc)|(gre)|(ell)|(el)|(grn)|(gn)|(gsw)|(guj)|(gu)|(gwi)|(hai)|(hat)|(ht)|(hau)|(ha)|(haw)|(heb)|(he)|(her)|(hz)|(hil)|(him)|(hin)|(hi)|(hit)|(hmn)|(hmo)|(ho)|(hsb)|(hun)|(hu)|(hup)|(iba)|(ibo)|(ig)|(ice)|(isl)|(is)|(ido)|(io)|(iii)|(ii)|(ijo)|(iku)|(iu)|(ile)|(ie)|(ilo)|(ina)|(ia)|(inc)|(ind)|(id)|(ine)|(inh)|(ipk)|(ik)|(ira)|(iro)|(ita)|(it)|(jav)|(jv)|(jbo)|(jpn)|(ja)|(jpr)|(jrb)|(kaa)|(kab)|(kac)|(kal)|(kl)|(kam)|(kan)|(kn)|(kar)|(kas)|(ks)|(kau)|(kr)|(kaw)|(kaz)|(kk)|(kbd)|(kha)|(khi)|(khm)|(km)|(kho)|(kik)|(ki)|(kin)|(rw)|(kir)|(ky)|(kmb)|(kok)|(kom)|(kv)|(kon)|(kg)|(kor)|(ko)|(kos)|(kpe)|(krc)|(krl)|(kro)|(kru)|(kua)|(kj)|(kum)|(kur)|(ku)|(kut)|(lad)|(lah)|(lam)|(lao)|(lo)|(lat)|(la)|(lav)|(lv)|(lez)|(lim)|(li)|(lin)|(ln)|(lit)|(lt)|(lol)|(loz)|(ltz)|(lb)|(lua)|(lub)|(lu)|(lug)|(lg)|(lui)|(lun)|(luo)|(lus)|(mac)|(mkd)|(mk)|(mad)|(mag)|(mah)|(mh)|(mai)|(mak)|(mal)|(ml)|(man)|(mao)|(mri)|(mi)|(map)|(mar)|(mr)|(mas)|(may)|(msa)|(ms)|(mdf)|(mdr)|(men)|(mga)|(mic)|(min)|(mis)|(mkh)|(mlg)|(mg)|(mlt)|(mt)|(mnc)|(mni)|(mno)|(moh)|(mol)|(mo)|(mon)|(mn)|(mos)|(mun)|(mus)|(mwl)|(mwr)|(myn)|(myv)|(nah)|(nai)|(nap)|(nau)|(na)|(nav)|(nv)|(nbl)|(nr)|(nde)|(nd)|(ndo)|(ng)|(nds)|(nep)|(ne)|(new)|(nia)|(nic)|(niu)|(nno)|(nn)|(nob)|(nb)|(nog)|(non)|(nor)|(no)|(nso)|(nub)|(nwc)|(nya)|(ny)|(nym)|(nyn)|(nyo)|(nzi)|(oci)|(oc)|(oji)|(oj)|(ori)|(or)|(orm)|(om)|(osa)|(oss)|(os)|(ota)|(oto)|(paa)|(pag)|(pal)|(pam)|(pan)|(pa)|(pap)|(pau)|(peo)|(per)|(fas)|(fa)|(phi)|(phn)|(pli)|(pi)|(pol)|(pl)|(pon)|(por)|(pt)|(pra)|(pro)|(pus)|(ps)|(que)|(qu)|(raj)|(rap)|(rar)|(roa)|(roh)|(rm)|(rom)|(rum)|(ron)|(ro)|(run)|(rn)|(rup)|(rus)|(ru)|(sad)|(sag)|(sg)|(sah)|(sai)|(sal)|(sam)|(san)|(sa)|(sas)|(sat)|(scc)|(srp)|(sr)|(scn)|(sco)|(scr)|(hrv)|(hr)|(sel)|(sem)|(sga)|(sgn)|(shn)|(sid)|(sin)|(si)|(sio)|(sit)|(sla)|(slo)|(slk)|(sk)|(slv)|(sl)|(sma)|(sme)|(se)|(smi)|(smj)|(smn)|(smo)|(sm)|(sms)|(sna)|(sn)|(snd)|(sd)|(snk)|(sog)|(som)|(so)|(son)|(sot)|(st)|(spa)|(es)|(srd)|(sc)|(srn)|(srr)|(ssa)|(ssw)|(ss)|(suk)|(sun)|(su)|(sus)|(sux)|(swa)|(sw)|(swe)|(sv)|(syr)|(tah)|(ty)|(tai)|(tam)|(ta)|(tat)|(tt)|(tel)|(te)|(tem)|(ter)|(tet)|(tgk)|(tg)|(tgl)|(tl)|(tha)|(th)|(tib)|(bod)|(bo)|(tig)|(tir)|(ti)|(tiv)|(tkl)|(tlh)|(tli)|(tmh)|(tog)|(ton)|(to)|(tpi)|(tsi)|(tsn)|(tn)|(tso)|(ts)|(tuk)|(tk)|(tum)|(tup)|(tur)|(tr)|(tut)|(tvl)|(twi)|(tw)|(tyv)|(udm)|(uga)|(uig)|(ug)|(ukr)|(uk)|(umb)|(und)|(urd)|(ur)|(uzb)|(uz)|(vai)|(ven)|(ve)|(vie)|(vi)|(vol)|(vo)|(vot)|(wak)|(wal)|(war)|(was)|(wel)|(cym)|(cy)|(wen)|(wln)|(wa)|(wol)|(wo)|(xal)|(xho)|(xh)|(yao)|(yap)|(yid)|(yi)|(yor)|(yo)|(ypk)|(zap)|(zen)|(zha)|(za)|(znd)|(zul)|(zu)|(zun)|(zxx)|(nqo)|(zza)'}} 
+    
+  Language_Langmaterial_HL = 
+  ## Element language must contain  attribute encodinganalog and langcode.
+  ## Attribute encodinganalog must be set to 041$a.
+    element language{
+        attribute encodinganalog{"041$a"} &
+        LangcodeAttr}
+    
+ Descrules = 
+ ## Element descrules must contain PCDATA and may contain multiple emph elements.
+    element descrules{
+        mixed{Emph*}
+    } 
+    
+ Emph = 
+ ## Element emph must contain PCDATA and attribute render.
+    element emph{
+        RenderAttr &
+        xsd:string{pattern='[\w+\s*\p{P}*]+'}
+    }
+        
+ RenderAttr = 
+ ## Attribute render may not be empty.
+    attribute render{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+        
+ AbbrAttr =
+## Attribute abbr may not be empty. 
+    attribute abbr{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+    
+ Revisiondesc = 
+ ## Element revisiondesc must contain at least one change element.
+    element revisiondesc{
+        Change+
+    }
+    
+ Change = 
+ ## Element change must contain at least one date element and at least one item element.
+    element change{
+        Date_Revisiondesc+ &
+        Item_Change+
+    }
+        
+  Item_Change = 
+  ## Element item may not be empty.
+    element item{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+      
+   Archdesc = 
+   ## Element archdesc must contain element did, elements descgrp for dacs3, dacs4, dacs5, dacs7 element dao, element controlaccess, and element dsc.
+   ## Element archdesc may contain element bioghist.
+   ## Element archdesc may contain elements descgrp for dacs6.
+    element archdesc{
+        attribute type{"findingaid"},       
+        attribute relatedencoding{"marc21"},
+        attribute level{xsd:string{pattern='(collection)|(series)'}},  
+        Did_HL,
+        Bioghist_HL?,           
+        Descgrp3, 
+        Descgrp4,
+        Descgrp5?,
+        Descgrp6?,
+        Descgrp7,
+        Dao,              
+        Controlaccess_HL,
+        Dsc?                
+    }
+    
+       
+    Bioghist_HL = 
+    ## Element bioghist must contain either one element chronlist or one or more elements p.
+    ## Element bioghist may contain multiple elements list.
+    ## Element bioghist must contain attribute encodinganalog set to 545$a.
+        element bioghist{
+            attribute encodinganalog{"545$a"} &         
+            (Chronlist? | P*)+ & 
+            List*
+    }
+    
+    Chronlist = 
+    ## Element chronlist must contain at least one element chronitem.
+        element chronlist{
+            Chronitem+  
+    }
+    
+    Chronitem = 
+    ## Element chronitem must contain either a date or event element or a date or eventgrp element.
+        element chronitem{
+            ((Date? | Event?)+ | (Date? | Eventgrp?)+)+
+        }
+        
+     Event = 
+     ## Element event must contain PCDATA and may contain multiple emph elements.
+        element event{
+            mixed{Emph*}
+        }
+        
+      Eventgrp = 
+      ## Element eventgrp must contain at least one even element.
+        element eventgrp{
+            Event+
+        }
+    
+      List = 
+      ## Element list must contain at least one item element and must contain attribute type.
+        element list{
+            TypeAttr &
+            Item_List+
+        }
+        
+        ## Element item may not be empty. It may contain element emph.
+        Item_List =
+            element item{
+                mixed{Emph*} 
+            }
+            
+        ## Element extref must contain attributes xlink:href and xlink:type. It may not be empty. I may contain attribute xlink:title.
+        Extref = 
+            element extref{
+                XlinkHrefAttr &
+                XlinkTitleAttr? &
+                XlinkTypeAttr &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+            
+       ## Element controlaccess on the collection level must contain at least one of either persname or corpname, at least one each of subject (650) 
+       ## and local subject (690), and may contain geogname, genreform, or occupation.
+        Controlaccess_HL = 
+            element controlaccess{
+            (Corpname_HL* | Persname_HL*)+, 
+            Subject_HL+,            
+            (Geogname_HL | Genreform_HL | Occupation_HL)*,
+            LocalSubject_HL+
+        } 
+        
+       ## Element controlaccess on the dsc-level must contain at least one of the following elements: persname, 
+       ## corpname, subject, geogname, genreform, occupation
+       Controlaccess_dsc = 
+            element controlaccess{
+            (Corpname_dsc* | Persname_dsc* | Geogname_dsc* | Subject_dsc* | Genreform_dsc* | Occupation_dsc*)+ 
+        } 
+        
+        ## Element corpname on the collection level must contain attribute encodinganalog set to value 110, 610, or 710.
+        ## It must contain an attribute source and may contain attributes rules, role, authfilenumber, and altrender.
+        ## It may not be empty but it may contain element emph.
+        Corpname_HL = 
+            element corpname{
+                attribute encodinganalog{"110" | "610" | "710"} & 
+                RulesAttr? &
+                SourceAttr &
+                RoleAttr? &
+                AuthfilenumberAttr? &
+                AltrenderAttr? &
+                mixed{Emph*} 
+            }
+        
+        ## Element corpname on the dsc-level must contain an attribute source and may contain attributes rules, role, authfilenumber, and altrender.
+        ## It may not be empty but it may contain element emph.
+        Corpname_dsc = 
+            element corpname{
+                RulesAttr? &
+                SourceAttr &
+                RoleAttr? &
+                AuthfilenumberAttr? &
+                AltrenderAttr? &
+                mixed{Emph*} 
+            }
+            
+        ## Attribute authfilenumber must begin with "http://", or must match '"t" followed by 1-2 digits
+        AuthfilenumberAttr = 
+            attribute authfilenumber{xsd:string { pattern = 'http://.*|t\d{1,2}'}} 
+            
+        ## Element persname on the collection level may contain attribute encodinganalog set to 100, 600, or 700.
+        ## It must contain attribute source and may contain attributes rules, role, authfilenumber, and altrender.
+        ## It may not be empty.
+        Persname_HL =
+            element persname{
+                attribute encodinganalog{"100" | "600" |"700"}? & 
+                RulesAttr? &
+                SourceAttr & 
+                RoleAttr? &
+                AuthfilenumberAttr? &
+                AltrenderAttr? &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+   
+        ## Element persname on the dsc-level must contain attribute source and may contain attributes rules, role, authfilenumber, and altrender.
+        ## It may not be empty.
+           Persname_dsc =
+            element persname{
+                RulesAttr? &
+                SourceAttr & 
+                RoleAttr? &
+                AuthfilenumberAttr? &
+                AltrenderAttr? &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+   
+        ## Element geogname on the collection level must contain attribute encodinganalog set to 651.
+        ## It must contain attribute source and may contain attribute rules.
+        ## It may not be empty.
+        Geogname_HL =
+            element geogname{
+                attribute encodinganalog{"651"} & 
+                RulesAttr? &
+                SourceAttr &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+  
+        ## Element geogname on the dsc-level must contain attribute source and may contain attribute rules.
+        ## It may not be empty.
+          Geogname_dsc =
+            element geogname{
+                RulesAttr? &
+                SourceAttr &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}
+                }
+                
+        ## Element subject on the collection level must contain attribute encodinganalog set to 650.
+        ## It must contain attribute source and may contain attribute rules and authfilenumber.
+        ## It may not be empty.
+        Subject_HL =
+            element subject{
+                attribute encodinganalog{"650"} & 
+                RulesAttr? &
+                SourceAttr &
+                AuthfilenumberAttr? &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}
+}
+                
+        ## Local subject on the collection level must contain attribute encodinganalog set to 690.
+        ## It must contain attribute source and attribute authfilenumber and may contain attribute rules.
+        ## It may not be empty.
+        LocalSubject_HL =
+            element subject{
+                attribute encodinganalog{"690"} & 
+                RulesAttr? &
+                SourceAttr &
+                AuthfilenumberAttr &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}
+                }
+ 
+        ## Element subject on the dsc-level must contain attribute source and may contain attribute rules and authfilenumber.
+        ## It may not be empty.
+         Subject_dsc =
+            element subject{
+                RulesAttr? &
+                SourceAttr &
+                AuthfilenumberAttr? &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+ 
+        ## Element genreform on the collection level must contain attribute encodinganalog set to 655.
+        ## It must contain attribute source.
+        ## It may not be empty.
+        Genreform_HL =
+            element genreform{
+                attribute encodinganalog{"655"} & 
+                SourceAttr &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+ 
+        ## Element genreform on the dsc-level must contain attribute source.
+        ## It may not be empty.
+         Genreform_dsc =
+            element genreform{
+                SourceAttr &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+ 
+        ## Element occupation on the collection level must contain attribute encodinganalog set to 656.
+        ## It must contain attribute source.
+        ## It may not be empty.
+        Occupation_HL =
+            element occupation{
+                attribute encodinganalog{"656"} & 
+                SourceAttr &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+ 
+        ## Element occupation on the dsc-level must contain attribute source.
+        ## It may not be empty.
+         Occupation_dsc =
+            element occupation{
+                SourceAttr &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+ 
+ ## Element dao must contain attributes xlink:href and xlink:type. It may contain attributes xling:title and xlink:role.
+        Dao = 
+            element dao{
+                XlinkHrefAttr &
+                XlinkTitleAttr? &
+                XlinkRoleAttr? &
+                XlinkTypeAttr}
+                
+ ## Attribute xlink:href must start with one of the following: "findingaids.princeton.edu", "http", "bioghist-images", "msslogo", "shieldlogo", "laelogo"
+         XlinkHrefAttr = 
+            attribute xlink:href {xsd:string { pattern = '(findingaids\.princeton\.edu.*)|(http.*)|(bioghist-images.*)|(msslogo.*)|(shieldlogo.*)|(laelogo.*)'}}
+            
+ ## Attribute xlink:title may not be empty
+        XlinkTitleAttr = 
+            attribute xlink:title {xsd:string { pattern = '[\w+\s*\p{P}*]+'}} 
+             
+ ## Attribute xlink:role must start with "http://www.loc.gov/METS/"
+         XlinkRoleAttr = 
+            attribute xlink:role {xsd:string { pattern = 'http://www.loc.gov/METS/'}} 
+            
+ ## Attribute xlink:type must be set to "simple"
+         XlinkTypeAttr = 
+            attribute xlink:type {xsd:string { pattern = 'simple'}} 
+                
+ ## Element descgrp for DACS 3 elements must contain attribute id set to "dacs3".
+ ## It must also contain element scopecontent, and may contain element arrangement and attribute encodinganalog.
+         Descgrp3 = 
+            element descgrp{
+                (attribute id {"dacs3"},
+                EncodinganalogAttr?,
+                Scopecontent_HL,
+                Arrangement_HL?)
+                }
+                
+ ## Element descgrp for DACS 4 elements must contain attribute id set to "dacs4".
+ ## It must also contain at least one element accessrestrict and exactly one element userestrict, 
+ ## and may contain elements phystech and otherfindaid and attribute encodinganalog.
+        Descgrp4 = 
+            element descgrp{
+                (attribute id {"dacs4"},
+                 EncodinganalogAttr?,
+                 Accessrestrict_HL+,
+                 Phystech_HL?, 
+                 Userestrict_HL ,
+                 Otherfindaid?) 
+                 }
+                 
+ ## Element descgrp for DACS 5 elements must contain attribute id set to "dacs5".
+ ## It must also contain elements acqinfo and may contain elements custodhist, appraisal, and accruals. 
+ ## It may contain attribute encodinganalog.                
+       Descgrp5 = 
+            element descgrp{
+                 (attribute id {"dacs5"},
+                  EncodinganalogAttr?,
+                  Custodhist_HL?,
+                  Acqinfo_HL ,
+                  Appraisal?,
+                  Accruals?)
+                  }
+                  
+## Element descgrp for DACS 6 elements must contain attribute id set to "dacs6".
+ ## It may contain attribute encodinganalog and elements originalsloc, altformavail, relatedmaterial, and one or more elements bibliography.                    
+        Descgrp6 = 
+            element descgrp{
+                  (attribute id {"dacs6"},
+                  EncodinganalogAttr?,
+                  Originalsloc?,
+                  Altformavail_HL?,
+                  Relatedmaterial_HL?,                  
+                  Bibliography_HL*)
+                  }
+           
+## Element descgrp for DACS 7 elements must contain attribute id set to "dacs7".
+## It must contain element prefercite and may contain one or more element processinfo.
+## It may contain one or more elements note and bibliography.
+        Descgrp7 = 
+            element descgrp{
+                 (attribute id {"dacs7"} &
+                  EncodinganalogAttr? &
+                  Note* &
+                  Prefercite &
+                  Processinfo* &             
+                  Bibliography_HL*)
+                }
+                
+                
+## Element scopecontent on the collection level must contain attribute encodinganalog set to 520$a and at least one element p.
+         Scopecontent_HL = 
+            element scopecontent{
+                attribute encodinganalog{"520$a"} &
+                P+
+            }
+            
+## Element arrangement on the collection level must contain attribute encodinganalog set to 351$a and must contain at least one element p.
+         Arrangement_HL = 
+            element arrangement{
+                attribute encodinganalog{"351$a"} &
+                P+
+            }                
+
+## Element accessrestrict on the collection level must contain attribute encodinganalog set to 506$a 
+## and attribute type set to open, closed, remotestorage, or digital.
+## It must contain at least one element p.
+         Accessrestrict_HL = 
+            element accessrestrict{
+                attribute encodinganalog{"506$a"} &  
+                attribute type{"open"? | "closed"? | "remotestorage"? | "digital"?}+ &
+                P+                
+            }
+            
+## Element userestrict on the collection level must contain attribute encodinganalog set to 540$a and must contain at least one element p.
+         Userestrict_HL = 
+            element userestrict{
+                attribute encodinganalog{"540$a"} &
+                P+ 
+            }
+            
+## Element phystech on the collection level must contain attribute encodinganalog set to 538$a and must contain at least one element p.
+         Phystech_HL = 
+            element phystech{
+                attribute encodinganalog{"538$a"} &
+                P+
+            }
+            
+## Element otherfindaid must contain attribute encodinganalog set to 555$u and must contain at least one element p.
+         Otherfindaid = 
+            element otherfindaid{
+                attribute encodinganalog{"555$u"} &
+                P+
+            }
+            
+## Element otherfindaid on the collection level must contain attribute encodinganalog set to 561$a and must contain at least one element p.
+         Custodhist_HL = 
+            element custodhist{
+                attribute encodinganalog{"561$a"} &
+                P+
+            }
+            
+## Element acqinfo on the collection level must contain attribute encodinganalog set to 541$a and must contain at least one element p.
+        Acqinfo_HL = 
+            element acqinfo{
+                attribute encodinganalog{"541$a"} &
+                P+
+                }
+                
+## Element appraisal must contain attribute encodinganalog set to 583$a and must contain at least one element p.
+         Appraisal = 
+            element appraisal{
+                attribute encodinganalog{"583$a"} &
+                P+}
+           
+## Element accruals must contain attribute encodinganalog set to 584$a and must contain at least one element p.
+         Accruals = 
+            element accruals{
+                attribute encodinganalog{"584$a"} &
+                P+
+            }
+            
+## Element originalsloc must contain attribute encodinganalog set to 535$a and must contain at least one element p.
+         Originalsloc = 
+            element originalsloc{
+                attribute encodinganalog{"535$a"} &
+                P+
+            }
+                
+## Element altformavail on the collection level must contain attribute encodinganalog set to 530$a and must contain at least one element p.
+         Altformavail_HL = 
+            element altformavail{
+                attribute encodinganalog{"530$a"} &
+                P+
+            }
+            
+## Element relatedmaterial on the collection level must contain attribute encodinganalog set to 544$a and must contain at least one element p.
+         Relatedmaterial_HL = 
+            element relatedmaterial{
+                attribute encodinganalog{"544$a"} &
+                P+ 
+            }
+            
+## Element bibliography on the collection level must contain attribute encodinganalog set to 581$a and must contain at least one element p.
+         Bibliography_HL = 
+            element bibliography{
+                attribute encodinganalog{"581$a"} &
+                P+ 
+            }
+        
+## Element p must contain at least one element emph or text. It may contain one or more elements date, extref, and name.
+         P = 
+            element p{
+                mixed{Emph*} &
+                Date* &                
+                Extref* &
+                Name*
+            }
+        
+## Element note must contain at least one element p.
+          Note = 
+            element note{
+                P+}
+
+## Element processinfo must contain attribute encodinganalog set to 583$a and attribute id set to "processing" or "conservation".
+## It must contain at least one element p.
+          Processinfo = 
+            element processinfo{
+                attribute encodinganalog{"583$a"} &
+                attribute id{"processing" | "conservation"} &
+                P+
+            }
+                   
+## Element name must contain text and may contain attribute role.
+            Name = 
+                element name{
+                    RoleAttr? &
+                    xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+                    
+## Attribute role may not be empty.
+            RoleAttr = 
+                attribute role{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+                
+## Element prefercite must contain attribute encodinganalog set to 524$a and at least one element p.    
+            Prefercite = 
+                element prefercite{
+                    attribute encodinganalog{"524$a"} &
+                    P+
+                }
+   
+## Element did on the collection level must contain at least one element each of unitid, unitdate, origination, and physloc containing repository code.
+## It must also contain elements repository, unittitle, phsdesc, langmaterial, and abstract. It may contain element physloc containing text.
+            Did_HL = 
+                element did {
+                    Unitid_HL+,
+                    Repository, 
+                    Unittitle_HL ,
+                    Unitdate_HL+,
+                    Physdesc_HL,
+                    Origination_HL+,
+                    Langmaterial_HL,
+                    Abstract_HL,       
+                    Physloc_HL_Code+,
+                    Physloc_HL_Text? 
+                } 
+                
+## Element unitid on the collection level must contain attribute encodinganalog ste to 084$a and attribute repositorycode set to US-NjP.
+## It must also contain attributes countrycode and type, and must contain text.
+            Unitid_HL = 
+                element unitid{
+                attribute encodinganalog{"084$a"} &
+                CountrycodeAttr &
+                attribute repositorycode{"US-NjP"} &
+                TypeAttr &                
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+                
+## Attribute countrycode must be set to "US".
+           CountrycodeAttr = 
+                attribute countrycode{"US"}
+          
+## Attribute type may not be empty.
+           TypeAttr = 
+                attribute type{xsd:string{pattern='\w+'}}
+                
+## Element unittitle on the collection level must contain attribute encodinganalog set to 245$a and may contain attribute altrender.
+## It must also contain text and may contain one or more elements emph.
+           Unittitle_HL = 
+                element unittitle{
+                    attribute encodinganalog{"245$a"} &
+                    AltrenderAttr? &
+                    mixed{Emph*}
+                }    
+                
+## Element unitdate on the collection level must contain attribute encodinganalog set to 245$f and may contain attribute type.
+## It must either contain attribute normal and its content must be DACS-formatted, or its content must equal "undated".
+            Unitdate_HL = 
+                element unitdate{
+                attribute encodinganalog{"245$f"} &
+                TypeAttr? &
+               ((xsd:string{pattern='(((circa\s*)*(\n)?)((\d{4}(\n)?\s*(\n)?(January|February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}\s*\.*\s*)(\n)?|(\d{4}(\n)?\s*(\n)?(January|February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*)(\n)?|(\d{4}(\n)?\s*(\n)?(January|February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*)(\n)?|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?-\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?-\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(((before\s*|after\s*)|((F|f)iscal\s(Y|y)ear\s))*(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|((before\s*|after\s*)?(\n)?\d{4}(\n)?\s*(\n)?-(\n)?\s*(\n)?(before\s*|after\s*)?(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|((before\s*|after\s*)*(\n)?\d{3}0s(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{3}0s(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{3}0s(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{3}0s(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{3}0s(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}s?)*(\n)?\s*(\n)?-\s*(\n)?((present)|(Present))*(\n)?\s*(\n)?\.*(\n)?\s*(\n)?|(\d{4}\s*\n*\s*((f|F)all|(A|a)utumn|(W|w)inter|(S|s)pring|(S|s)ummer)?(\s*\n*\s*-\s*\n*\s*\d{4}\s*\n*\s*((f|F)all|(A|a)utumn|(W|w)inter|(S|s)pring|(S|s)ummer)?)?)|(((F|f)all|(A|a)utumn|(W|w)inter|(S|s)pring|(S|s)ummer)?\s*\n*\s*\d{4}(\s*\n*\s*-\s*\n*\s*((F|f)all|(A|a)utumn|(W|w)inter|(S|s)pring|(S|s)ummer)?\s*\n*\s*\d{4})?)|((e|E)arly|(m|M)id|(l|L)ate)*/*((e|E)arly|(m|M)id|(l|L)ate)*\s*\d{1,2}th\scentury|(\d{4},(\n)*\s(\n)*\d{4}(\n)*\s*(\n)*-(\n)*\s*(\n)*\d{4})|(\d{4})(\n)*(\s*(\n)*-\s*(\n)*)*(\d{4})*(\n)*(,(\n)*\s)(\n)*(\d{4})*(\n)*(\s*(\n)*-\s*(\n)*)*(\d{4})*(\n)*(,*(\n)*\s(\n)*)*(\d{4})*(\n)*(\s*(\n)*-\s*(\n)*)*(\d{4})*(\n)*(,*(\n)*\s(\n)*)*(\d{4})*(\n)*(\s*(\n)*-\s*(\n)*)*(\d{4})*(\n)*(\s*\.*\s*))(\s*and\s(u|U)ndated)*)'} & NormalAttr) | (xsd:string{ pattern='([\w+\s*\p{P}*]+no\syear)|((u|U)ndated)'} & NormalAttr) | (xsd:string{ pattern='([\w+\s*\p{P}*]+no\syear)|((u|U)ndated)'}))
+               }
+                
+## Attribute normal must match the format YYYY-MM-DD/YYYY-MM-DD.
+           NormalAttr = 
+                attribute normal{xsd:string{pattern='(\-?(0|1|2)([0-9]{3})(((01|02|03|04|05|06|07|08|09|10|11|12)((0[1-9])|((1|2)[0-9])|(3[0-1])))|\-((01|02|03|04|05|06|07|08|09|10|11|12)(\-((0[1-9])|((1|2)[0-9])|(3[0-1])))?))?)(/\-?(0|1|2)([0-9]{3})(((01|02|03|04|05|06|07|08|09|10|11|12)((0[1-9])|((1|2)[0-9])|(3[0-1])))|\-((01|02|03|04|05|06|07|08|09|10|11|12)(\-((0[1-9])|((1|2)[0-9])|(3[0-1])))?))?)?'}}
+         
+## Element abstract on the collection level must contain text and may contain element emph.
+            Abstract_HL = 
+                element abstract{
+                    mixed{Emph*}
+                }
+                
+## Element langmaterial on the collection level must contain attribute encodinganalog set to 546$a and must contain at least one element language.
+            Langmaterial_HL = 
+                element langmaterial{
+                    attribute encodinganalog{"546$a"} &
+                    Language_Langmaterial_HL+
+                }
+                
+## Element origination must contain at least one of elements corpname, persname, or famname and may contain element altrender.
+            Origination_HL = 
+                element origination{
+                    (Corpname_HL? | Persname_HL? | Famname_HL?)+ &
+                    AltrenderAttr?
+                }
+            
+## Element famname on the collection level must contain attribute encodinganalog set to 100 and must contain attributes source and rules.
+## It may not be empty.
+## It may contain attributes altrender, role, and authfilenumber.
+            Famname_HL = 
+                element famname{
+                attribute encodinganalog{"100"} &
+                AltrenderAttr? &
+                SourceAttr &
+                RoleAttr? &
+                RulesAttr &
+                AuthfilenumberAttr? &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+             
+## Element persname must contain attributes source and rules and may contain attributes role and authfilenumber. It may not be empty.
+            Persname = 
+                element persname{
+                SourceAttr &
+                RoleAttr? &
+                RulesAttr &
+                AuthfilenumberAttr? &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+                
+## Element persname must contain attributes source and rules and may contain attributes role and authfilenumber. It may not be empty.
+           Corpname = 
+                element corpname{
+                SourceAttr &
+                RoleAttr? &
+                RulesAttr &
+                AuthfilenumberAttr? &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+                
+## Attribute altrender may not be empty.
+            AltrenderAttr =
+                attribute altrender{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+                
+## Attribute source must equal lcnaf, lcsh, local, LAE, aat, gmgpc, ftamc, or tgn.
+            SourceAttr = 
+                attribute source{xsd:string{pattern='(lcnaf)|(lcsh)|(local)|(LAE)|(aat)|(gmgpc)|(ftamc)|(tgn)'}}
+                
+## Attribute rules must equal legacy, aacr2, dacs, or local.
+            RulesAttr = 
+                attribute rules{xsd:string{pattern='(legacy)|(aacr2)|(dacs)|(local)'}} 
+           
+## Element physdesc on the collection level must contain at least one element extent.
+            Physdesc_HL = 
+                element physdesc{
+                    Extent_HL+ 
+                    }
+
+## Element extent on the collection level must contain attribute encodinganalog set to 300$a. It may contain attribute type.
+## It may not be empty.
+            Extent_HL = 
+                element extent{
+                attribute encodinganalog{"300$a"} &
+                TypeAttr? &
+                xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+                
+## Element dimensions may not be empty.
+            Dimensions = 
+                element dimensions{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+                
+## Element physfacet may not be empty.
+            Physfacet = 
+                element physfacet{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+                
+## Element physloc on collection level must match valid repository code and must contain attribute type set to code.
+            Physloc_HL_Code = 
+                element physloc{
+                    attribute type{("code")}+ &
+                    xsd:string{pattern='(mss)|(rcpxr)|(flm)|(flmp)|(rcppf)|(ex)|(gax)|(wa)|(rcpph)|(rcpxg)|(rcpxm)|(anxb)|(mudd)|(hsvc)|(hsvg)|(hsvr)|(hsvm)|(ctsn)|(thx)|(st)'}
+                }
+
+## Element physloc on collection level may not be empty and must contain attribute type set to text.
+              Physloc_HL_Text = 
+                element physloc{
+                    attribute type{("text")} &
+                    xsd:string{pattern='[\w+\s*\p{P}*]+'}
+                }
+                
+## Element physloc may not be empty. It may contain attribute type set to text or code, and element extref.
+            Physloc = 
+                element physloc{
+                    attribute type{("text" | "code")}? &
+                    mixed{Extref*}
+                }
+                
+## Element repository must contain attribute encodinganalog set to 852$a and attribute id set to either mss, lae, eng, rarebooks, ga, univarchives, publicpolicy, or other.
+## It must contain element address and may contain one or more elements corpname and subarea.
+            Repository = 
+                element repository{
+                    attribute encodinganalog{"852$a"} &
+                    attribute id{"mss" | "lae" | "eng" | "rarebooks" | "ga" | "univarchives" | "publicpolicy" | "other"} &
+                    Address & 
+                    Corpname*  &
+                    Subarea*
+                }
+               
+## Elememt subarea may not be empty.
+            Subarea = 
+                element subarea{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+    
+## Element dsc must contain attribute type set to combined and at least one of elements c/@level="series", c/@level="subgrp", or c/@level="file|item|otherlevel"
+Dsc =
+    element dsc {
+        attribute type{"combined"} &
+        (C_Series | C_Subgrp | C_FileAndBelow)+
+    }
+
+## Element c must contain attribute id and attribute level set to file, item, or otherlevel.
+## It must contain element did and may contain attribute otherlevel and elements
+## accessrestrict, acqinfo, altformavail, arrangement, bibliography, bioghist, controlaccess, custodhist, phystech, relatedmaterial, scopecontent, userestrict, or c.
+C_FileAndBelow = 
+    element c{
+        IdAttr &
+        attribute level {string "file" | "item" | "otherlevel"} & 
+        OtherlevelAttr? &
+        Did_Dsc &
+        Accessrestrict_Dsc* &
+        Acqinfo_Dsc? &
+        Altformavail_Dsc* &
+        Arrangement_Dsc? &
+        Bibliography_Dsc* &
+        Bioghist_Dsc? &        
+        Controlaccess_dsc* &
+        Custodhist_Dsc* &
+        Phystech_Dsc* &
+        Relatedmaterial_Dsc* &
+        Scopecontent_Dsc? &
+        Userestrict_Dsc* &
+        C_FileAndBelow*
+        }
+ 
+## Element c must contain attribute id and attribute level set to subgrp.
+## It must contain element did and may contain attribute otherlevel and elements
+## accessrestrict, acqinfo, altformavail, arrangement, bibliography, bioghist, controlaccess, custodhist, phystech, relatedmaterial, scopecontent, userestrict, or c.
+C_Subgrp = 
+    element c{
+        IdAttr &
+        attribute level {string "subgrp"} & 
+        OtherlevelAttr? &
+        Did_Dsc &
+        Accessrestrict_Dsc* &
+        Acqinfo_Dsc? &
+        Altformavail_Dsc* &
+        Arrangement_Dsc? &
+        Bibliography_Dsc* &
+        Bioghist_Dsc? &        
+        Controlaccess_dsc* &
+        Custodhist_Dsc* &
+        Phystech_Dsc* &
+        Relatedmaterial_Dsc* &
+        Scopecontent_Dsc? &
+        Userestrict_Dsc* &
+        (C_Series*)*
+        }
+ 
+## Element c must contain attribute id and attribute level set to series.
+## It must contain element did and may contain attribute otherlevel and elements
+## accessrestrict, acqinfo, altformavail, arrangement, bibliography, bioghist, controlaccess, custodhist, phystech, relatedmaterial, scopecontent, userestrict, or c.
+ C_Series = 
+    element c{
+        IdAttr &
+        attribute level {string "series"} & 
+        OtherlevelAttr? &
+        Did_Dsc &
+        Accessrestrict_Dsc* &
+        Acqinfo_Dsc? &
+        Altformavail_Dsc* &
+        Arrangement_Dsc? &
+        Bibliography_Dsc* &
+        Bioghist_Dsc? &        
+        Controlaccess_dsc* &
+        Custodhist_Dsc* &
+        Phystech_Dsc* &
+        Relatedmaterial_Dsc* &
+        Scopecontent_Dsc? &
+        Userestrict_Dsc* &
+        (C_FileAndBelow* | C_Subseries*)*
+        }
+       
+## Element c must contain attribute id and attribute level set to subseries.
+## It must contain element did and may contain attribute otherlevel and elements
+## accessrestrict, acqinfo, altformavail, arrangement, bibliography, bioghist, controlaccess, custodhist, phystech, relatedmaterial, scopecontent, userestrict, or c.
+ C_Subseries = 
+    element c{
+        IdAttr &
+        attribute level {string "subseries"} & 
+        OtherlevelAttr? &
+        Did_Dsc &
+        Accessrestrict_Dsc* &
+        Acqinfo_Dsc? &
+        Altformavail_Dsc* &
+        Arrangement_Dsc? &
+        Bibliography_Dsc* &
+        Bioghist_Dsc? &        
+        Controlaccess_dsc* &
+        Custodhist_Dsc* &
+        Phystech_Dsc* &
+        Relatedmaterial_Dsc* &
+        Scopecontent_Dsc? &
+        Userestrict_Dsc* &
+        C_FileAndBelow*
+        }
+        
+## Attribute otherlevel must be set to text.
+OtherlevelAttr = 
+    attribute otherlevel{"text"}
+        
+## Element accessrestrict must contain at least one of elements list or p.
+ Accessrestrict_Dsc = 
+    element accessrestrict{
+        (List* | P*)+
+    }
+   
+## Element acqinfo must contain at least one element p.
+ Acqinfo_Dsc =
+    element acqinfo{
+        P+
+    }
+    
+## Element altformavail must contain at least one element p.
+ Altformavail_Dsc =
+    element altformavail{
+        P+
+    }
+    
+## Element arrangement must contain at least one element p.
+ Arrangement_Dsc =
+    element arrangement{
+        P+
+    }
+    
+## Element bibliography must contain at least one element p.
+ Bibliography_Dsc =
+    element bibliography{
+        P+
+    }
+    
+## Element bioghist must contain at least one element p.
+ Bioghist_Dsc = 
+    element bioghist{
+        P+
+    }
+    
+## Element custodhist must contain at least one element p.
+ Custodhist_Dsc = 
+    element custodhist{
+        P+
+    }
+    
+## Element phystech must contain at least one element p.
+ Phystech_Dsc = 
+    element phystech{
+        P+
+    }
+    
+## Element relatedmaterial must contain at least one element p.
+ Relatedmaterial_Dsc =
+    element relatedmaterial{
+        P+
+    }
+    
+## Element scopecontent must contain at least one of elements list or p.
+ Scopecontent_Dsc =
+    element scopecontent{
+        (List* | P*)+ 
+    }
+    
+## Element unitdate must either contain attribute normal and its content must be DACS-formatted, or its content must equal "undated".
+## It may contain attribute type.
+    Unitdate_Dsc = 
+       element unitdate{
+       ((xsd:string{pattern='(((circa\s*)*(\n)?)((\d{4}(\n)?\s*(\n)?(January|February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}\s*\.*\s*)(\n)?|(\d{4}(\n)?\s*(\n)?(January|February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*)(\n)?|(\d{4}(\n)?\s*(\n)?(January|February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*)(\n)?|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?-\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?-\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?-(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?-(\n)?\s*(\n)?(January||February|March|April|May|June|July|August|September|October|November|December)(\n)?\s*(\n)?\d{1,2}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(((before\s*|after\s*)|((F|f)iscal\s(Y|y)ear\s))*(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|((before\s*|after\s*)?(\n)?\d{4}(\n)?\s*(\n)?-(\n)?\s*(\n)?(before\s*|after\s*)?(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|((before\s*|after\s*)*(\n)?\d{3}0s(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{3}0s(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{3}0s(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{3}0s(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{3}0s(\n)?\s*(\n)?-(\n)?\s*(\n)?\d{4}(\n)?\s*(\n)?\.*(\n)?\s*(\n)?)|(\d{4}s?)*(\n)?\s*(\n)?-\s*(\n)?((present)|(Present))*(\n)?\s*(\n)?\.*(\n)?\s*(\n)?|(\d{4}\s*\n*\s*((f|F)all|(A|a)utumn|(W|w)inter|(S|s)pring|(S|s)ummer)?(\s*\n*\s*-\s*\n*\s*\d{4}\s*\n*\s*((f|F)all|(A|a)utumn|(W|w)inter|(S|s)pring|(S|s)ummer)?)?)|(((F|f)all|(A|a)utumn|(W|w)inter|(S|s)pring|(S|s)ummer)?\s*\n*\s*\d{4}(\s*\n*\s*-\s*\n*\s*((F|f)all|(A|a)utumn|(W|w)inter|(S|s)pring|(S|s)ummer)?\s*\n*\s*\d{4})?)|((e|E)arly|(m|M)id|(l|L)ate)*/*((e|E)arly|(m|M)id|(l|L)ate)*\s*\d{1,2}th\scentury|(\d{4},(\n)*\s(\n)*\d{4}(\n)*\s*(\n)*-(\n)*\s*(\n)*\d{4})|(\d{4})(\n)*(\s*(\n)*-\s*(\n)*)*(\d{4})*(\n)*(,(\n)*\s)(\n)*(\d{4})*(\n)*(\s*(\n)*-\s*(\n)*)*(\d{4})*(\n)*(,*(\n)*\s(\n)*)*(\d{4})*(\n)*(\s*(\n)*-\s*(\n)*)*(\d{4})*(\n)*(,*(\n)*\s(\n)*)*(\d{4})*(\n)*(\s*(\n)*-\s*(\n)*)*(\d{4})*(\n)*(\s*\.*\s*))(\s*and\s(u|U)ndated)*)'} & NormalAttr) | (xsd:string{ pattern='([\w+\s*\p{P}*]+no\syear)|((u|U)ndated)'} & NormalAttr) | (xsd:string{ pattern='([\w+\s*\p{P}*]+no\syear)|((u|U)ndated)'})) &
+        TypeAttr?}
+           
+## Element userestrict must contain at least one of elements list or p.
+ Userestrict_Dsc =
+    element userestrict{
+        P
+    }
+    
+## Element did must contain elements unittitle and physdesc and at least one element unitdate.
+## It may contain elements unitid, abstract, container, dao, langmaterial, origination, physdesc, physloc, or odd.
+ Did_Dsc = 
+    element did{
+        Unitid_Dsc* &
+        Unittitle_Dsc &
+        Unitdate_Dsc+ &
+        Abstract_Dsc* &
+        Container* &
+        Dao* &
+        Langmaterial_Dsc* &
+        Origination_Dsc* &
+        Physdesc_Dsc? &
+        Physloc* &
+        Odd*
+    }
+    
+## Element unitid may not be empty. It may contain attribute type set to accessionnumber.
+ Unitid_Dsc = 
+    element unitid{
+    attribute type{string 'accessionnumber'}? &
+    (xsd:string{pattern='[\w+\s*\p{P}*]+'})
+    }
+    
+## Element unittitle may not be empty. It may contain element emph and attribute altrender.
+ Unittitle_Dsc =
+    element unittitle{
+        AltrenderAttr? &
+        mixed{Emph*}
+    }
+    
+## Element abstract may not be empty.
+ Abstract_Dsc = 
+    element abstract{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+    
+## Element container must contain attribute type and may not be empty. It may contain attributes id and parent.
+ Container = 
+    element container{
+        TypeAttr & 
+        attribute id{xsd:string{pattern='[\w+\s*\p{P}*]+'}}? &
+        ParentAttr? &
+        xsd:string{pattern='[\w+\s*\p{P}*]+'}
+    }
+    
+## Attribute parent may not be empty.
+ ParentAttr =
+    attribute parent{xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+   
+## Element langmaterial must contain at least one element language.
+ Langmaterial_Dsc = 
+    element langmaterial{
+        Language_Langmaterial_Dsc+}
+        
+## Element language must contain attribute langcode.
+ Language_Langmaterial_Dsc =
+    element language{
+        LangcodeAttr}
+     
+## Element origination must contain at least one of elements corpname or persname.
+ Origination_Dsc = 
+    element origination{
+        (Corpname* | Persname*)+
+    }
+    
+## Element physdesc must contain at least one element extent and may contain elements dimensions and physfacet.
+ Physdesc_Dsc = 
+    element physdesc{
+        Extent_Dsc+ & 
+        Dimensions* & 
+        Physfacet*
+    }
+    
+## Element extent may not be empty. It may contain attribute type.
+ Extent_Dsc =
+    element extent{
+        TypeAttr? &
+        xsd:string{pattern='[\w+\s*\p{P}*]+'}}
+      
+## Element odd must contain attribute id and element p.
+ Odd = 
+    element odd{
+        attribute id{xsd:string{pattern='[\w+\s*\p{P}*]+'}} &
+        P
+    }
+
+  }
