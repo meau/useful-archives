@@ -21,27 +21,33 @@
           <xsl:value-of select="name()"/>
           <xsl:text>&#9;|</xsl:text>
           <!-- this is for reassurance and testing with newer files without c0x -->
-          <xsl:value-of select="concat(name(),'0',count(./ancestor-or-self::ead:c))"/>
-          <xsl:text>&#9;|</xsl:text>
+<!--          <xsl:value-of select="concat(name(),'0',count(./ancestor-or-self::ead:c))"/>
+          <xsl:text>&#9;|</xsl:text>-->
           <!-- end demo -->
           <xsl:value-of select="@id"/>
           <xsl:text>&#9;|</xsl:text>
-          <xsl:value-of select="normalize-space(ead:did/ead:unitid)" />
+<!--          <xsl:value-of select="normalize-space(ead:did/ead:unitid)" />
           <xsl:text>&#9;|</xsl:text>
-          <xsl:value-of select="ead:did/ead:container [@type='box']/@type"/>
+          <xsl:value-of select="ead:did/ead:container [@type='Flat-File']/@type"/>
           <xsl:text> </xsl:text>
-          <xsl:value-of select="ead:did/ead:container [@type='box']"></xsl:value-of>
+          <xsl:value-of select="ead:did/ead:container [@type='Flat-File']"></xsl:value-of>
           <xsl:text>&#9;|</xsl:text>
-          <xsl:value-of select="ead:did/ead:container[@type='folder']/@type" />
+          <xsl:value-of select="ead:did/ead:container[@type='Drawer']/@type" />
           <xsl:text> </xsl:text>
-          <xsl:value-of select="ead:did/ead:container[@type='folder']"></xsl:value-of>
+          <xsl:value-of select="ead:did/ead:container[@type='Drawer']"></xsl:value-of>
+          <xsl:text>&#9;|</xsl:text>-->
+          <xsl:value-of select="ead:did/ead:container[@type='Negative']/@type" />
           <xsl:text>&#9;|</xsl:text>
-          <xsl:value-of select="ead:did/ead:container[@type='reel']/@type" />
-          <xsl:text> </xsl:text>
-          <xsl:value-of select="ead:did/ead:container[@type='reel']"></xsl:value-of>
+          <xsl:value-of select="ead:did/ead:container[@type='Negative']"></xsl:value-of>
+          <xsl:text>&#9;|</xsl:text>
+          <xsl:value-of select="ead:did/ead:container[@type='Box']/@type" />
+          <xsl:text>&#9;|</xsl:text>
+          <xsl:value-of select="ead:did/ead:container[@type='Box']"></xsl:value-of>
           <xsl:text>&#9;|</xsl:text>
           <xsl:value-of select="normalize-space(ead:did/ead:unittitle)" />
           <xsl:text>&#9;|</xsl:text>
+<!--          <xsl:value-of select="normalize-space(ead:scopecontent/ead:p[1])" />
+          <xsl:text>|&#9;</xsl:text>-->
 <!--      <xsl:value-of select="normalize-space(ead:accessrestrict/ead:p[1])" />
           <xsl:text>|&#13;</xsl:text>-->
           <xsl:value-of select="ead:did/ead:unitdate" />
