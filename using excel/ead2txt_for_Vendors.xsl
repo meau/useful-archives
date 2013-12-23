@@ -36,13 +36,13 @@
           <xsl:text> </xsl:text>
           <xsl:value-of select="ead:did/ead:container[@type='Drawer']"></xsl:value-of>
           <xsl:text>&#9;|</xsl:text>-->
-          <xsl:value-of select="ead:did/ead:container[@type='Negative']/@type" />
+          <xsl:value-of select="ead:did/ead:container[1]/@type" />
           <xsl:text>&#9;|</xsl:text>
-          <xsl:value-of select="ead:did/ead:container[@type='Negative']"></xsl:value-of>
+          <xsl:value-of select="ead:did/ead:container[1]"></xsl:value-of>
           <xsl:text>&#9;|</xsl:text>
-          <xsl:value-of select="ead:did/ead:container[@type='Box']/@type" />
+          <xsl:value-of select="ead:did/ead:container[2]/@type" />
           <xsl:text>&#9;|</xsl:text>
-          <xsl:value-of select="ead:did/ead:container[@type='Box']"></xsl:value-of>
+          <xsl:value-of select="ead:did/ead:container[2]"></xsl:value-of>
           <xsl:text>&#9;|</xsl:text>
           <xsl:value-of select="normalize-space(ead:did/ead:unittitle)" />
           <xsl:text>&#9;|</xsl:text>
