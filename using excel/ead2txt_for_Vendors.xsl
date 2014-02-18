@@ -26,9 +26,9 @@
           <!-- end demo -->
           <xsl:value-of select="@id"/>
           <xsl:text>&#9;|</xsl:text>
-<!--          <xsl:value-of select="normalize-space(ead:did/ead:unitid)" />
+          <xsl:value-of select="normalize-space(ead:did/ead:unitid)" />
           <xsl:text>&#9;|</xsl:text>
-          <xsl:value-of select="ead:did/ead:container [@type='Flat-File']/@type"/>
+<!--          <xsl:value-of select="ead:did/ead:container [@type='Flat-File']/@type"/>
           <xsl:text> </xsl:text>
           <xsl:value-of select="ead:did/ead:container [@type='Flat-File']"></xsl:value-of>
           <xsl:text>&#9;|</xsl:text>
