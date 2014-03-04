@@ -24,7 +24,7 @@
         <!--</ead>-->
     </xsl:template>
     <xsl:template match="row">
-        <c level="{level}">
+        <c level="file">
             <did>
                 <xsl:if test="unitid">
                     <unitid>
@@ -36,21 +36,26 @@
                         <xsl:value-of select="unittitle"/>
                     </unittitle>
                 </xsl:if>
-                <xsl:if test="unitdate ne ''">
-                    <unitdate normal="{datenormal}">
-                        <xsl:value-of select="unitdate"/> 
+                <xsl:if test="unitdate-start ne ''">
+                    <unitdate normal="{unitdatenormal-start}/{unitdatenormal-end}">
+                        <xsl:value-of select="unitdate-start"/><xsl:text>-</xsl:text><xsl:value-of select="unitdate-end"/>
                     </unitdate>
                 </xsl:if>
                 <xsl:if test="extent">
                     <physdesc>
                         <extent>
-                            <xsl:value-of select="extent"/><xsl:text> photographs</xsl:text>
+                            <xsl:value-of select="extent"/><xsl:text> folders</xsl:text>
                         </extent>
                     </physdesc>
                 </xsl:if>
-                <xsl:if test="container">
+                <xsl:if test="box">
                     <container type="box">
-                        <xsl:value-of select="container"/>
+                        <xsl:value-of select="box"/>
+                    </container>
+                </xsl:if>
+                <xsl:if test="folder">
+                    <container type="folder">
+                        <xsl:value-of select="folder"/>
                     </container>
                 </xsl:if>
                 <xsl:if test="creator">
