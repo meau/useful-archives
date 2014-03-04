@@ -35,7 +35,7 @@
           <xsl:value-of select="ead:did/ead:container[@type='Drawer']/@type" />
           <xsl:text> </xsl:text>
           <xsl:value-of select="ead:did/ead:container[@type='Drawer']"></xsl:value-of>
-          <xsl:text>&#9;|</xsl:text>-->
+          <xsl:text>&#9;|</xsl:text>
           <xsl:value-of select="ead:did/ead:container[1]/@type" />
           <xsl:text>&#9;|</xsl:text>
           <xsl:value-of select="ead:did/ead:container[1]"></xsl:value-of>
@@ -46,13 +46,13 @@
           <xsl:text>&#9;|</xsl:text>
           <xsl:value-of select="normalize-space(ead:did/ead:unittitle)" />
           <xsl:text>&#9;|</xsl:text>
-<!--          <xsl:value-of select="normalize-space(ead:scopecontent/ead:p[1])" />
+          <xsl:value-of select="normalize-space(ead:scopecontent/ead:p[1])" />
           <xsl:text>|&#9;</xsl:text>-->
 <!--      <xsl:value-of select="normalize-space(ead:accessrestrict/ead:p[1])" />
-          <xsl:text>|&#13;</xsl:text>-->
+          <xsl:text>|&#13;</xsl:text>
           <xsl:value-of select="ead:did/ead:unitdate" />
           <xsl:text>&#9;|</xsl:text>
-          <xsl:value-of select="ead:did/ead:unitdate/@normal" />
+          <xsl:value-of select="ead:did/ead:unitdate/@normal" /> -->
           <xsl:text>|&#13;</xsl:text>
       </xsl:for-each>
   </xsl:template>

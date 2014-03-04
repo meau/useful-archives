@@ -24,12 +24,12 @@
         <!--</ead>-->
     </xsl:template>
     <xsl:template match="row">
-        <c level="{level}" id="{id}">
+        <c level="{level}">
             <did>
                 <xsl:if test="unitid">
-                    <unittitle>
+                    <unitid>
                         <xsl:value-of select="unitid"/>
-                    </unittitle>
+                    </unitid>
                 </xsl:if>
                 <xsl:if test="unittitle">
                     <unittitle>
@@ -37,14 +37,28 @@
                     </unittitle>
                 </xsl:if>
                 <xsl:if test="unitdate ne ''">
-                    <unitdate>
-                        <xsl:value-of select="datestart"/> - <xsl:value-of select="dateend"/>
+                    <unitdate normal="{datenormal}">
+                        <xsl:value-of select="unitdate"/> 
                     </unitdate>
+                </xsl:if>
+                <xsl:if test="extent">
+                    <physdesc>
+                        <extent>
+                            <xsl:value-of select="extent"/><xsl:text> photographs</xsl:text>
+                        </extent>
+                    </physdesc>
                 </xsl:if>
                 <xsl:if test="container">
                     <container type="box">
                         <xsl:value-of select="container"/>
                     </container>
+                </xsl:if>
+                <xsl:if test="creator">
+                    <origination>
+                        <persname>
+                            <xsl:value-of select="creator"/>
+                        </persname>
+                    </origination>
                 </xsl:if>
             </did>
             <xsl:if test="scopecontent">
@@ -80,13 +94,6 @@
                     </p>
                 </accessrestrict>
             </xsl:if>
-            <c>
-                <did>
-                    <unittitle>
-                        <xsl:value-of select="folder"/>
-                    </unittitle>
-                </did>
-            </c>
         </c>
     </xsl:template>
     <!-- this is to demonstrate template processing -->

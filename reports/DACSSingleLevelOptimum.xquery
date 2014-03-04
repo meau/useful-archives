@@ -5,7 +5,7 @@ declare namespace xlink = "http://www.w3.org/1999/xlink";
 import module namespace functx="http://www.functx.com" 
     at "http://www.xqueryfunctions.com/xq/functx-1.0-doc-2007-01.xq";
 
-declare variable $COLLECTION as document-node()* := collection("file:///Users/staff/Desktop/eads/archives/?select=*.xml");
+declare variable $COLLECTION as document-node()* := collection("file:///Users/staff/Desktop/eads/tamwag/?select=*.xml");
 
 for $i in $COLLECTION//ead:ead
 let $referencecode := $i//ead:archdesc/ead:did/ead:unitid//text(),
