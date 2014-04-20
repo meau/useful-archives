@@ -7,7 +7,7 @@ import module namespace functx="http://www.functx.com"
     at "http://www.xqueryfunctions.com/xq/functx-1.0-doc-2007-01.xq";
 :)
 
-declare variable $COLLECTION as document-node()* := collection("file:///Users/staff/Desktop/eads/tamwag/?select=*.xml");
+declare variable $COLLECTION as document-node()* := collection("file:///Users/staff/Documents/dlts_findingaids_eads/?recurse=yes;select=*.xml");
 
 for $i in $COLLECTION//ead:ead
 let $referencecode := $i//ead:archdesc/ead:did/ead:unitid//text(),
@@ -30,7 +30,7 @@ $physloc := exists($i//ead:physloc),
 $appraisal := exists($i//ead:appraisal),
 $abstract := exists($i//ead:abstract),
 $scopecontent := exists($i//ead:scopecontent),
-$bioghist := exists($i//ead:biogist),
+$bioghist := exists($i//ead:bioghist),
 $arrangement := exists($i//ead:arrangement),
 $processinfo := exists($i//ead:processinfo),
 $accessrestrict := $i//ead:archdesc/ead:accessrestrict/ead:p//text(),
@@ -66,7 +66,6 @@ return
 <bioghist>{$bioghist}</bioghist>
 <arrangement>{$arrangement}</arrangement>
 <processinfo>{$processinfo}</processinfo>
-<physloc>{$physloc}</physloc>
 <langmaterial>{$langmaterial}</langmaterial>
 <controlaccess>{$controlaccess}</controlaccess>
 <modified>{$datemodified}</modified>
