@@ -1,135 +1,129 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
-
-\f0\fs24 \cf0 [\
-  \{\
-    "op": "core/column-addition",\
-    "description": "Create column First Line at index 1 based on column Column 1 using expression grel:if(value.contains(\\"<record>\\"), value, null)",\
-    "engineConfig": \{\
-      "facets": [],\
-      "mode": "row-based"\
-    \},\
-    "newColumnName": "First Line",\
-    "columnInsertIndex": 1,\
-    "baseColumnName": "Column 1",\
-    "expression": "grel:if(value.contains(\\"<record>\\"), value, null)",\
-    "onError": "set-to-blank"\
-  \},\
-  \{\
-    "op": "core/column-move",\
-    "description": "Move column First Line to position 0",\
-    "columnName": "First Line",\
-    "index": 0\
-  \},\
-  \{\
-    "op": "core/column-rename",\
-    "description": "Rename column Column 1 to Column",\
-    "oldColumnName": "Column 1",\
-    "newColumnName": "Column"\
-  \},\
-  \{\
-    "op": "core/column-addition",\
-    "description": "Create column Status at index 2 based on column Column using expression grel:row.record.cells[\\"Column\\"].value[-1]",\
-    "engineConfig": \{\
-      "facets": [],\
-      "mode": "record-based"\
-    \},\
-    "newColumnName": "Status",\
-    "columnInsertIndex": 2,\
-    "baseColumnName": "Column",\
-    "expression": "grel:row.record.cells[\\"Column\\"].value[-1]",\
-    "onError": "set-to-blank"\
-  \},\
-  \{\
-    "op": "core/text-transform",\
-    "description": "Text transform on cells in column Column using expression grel:row.record.cells[\\"Column\\"].value[1, -1].join(\\"|\\")",\
-    "engineConfig": \{\
-      "facets": [],\
-      "mode": "record-based"\
-    \},\
-    "columnName": "Column",\
-    "expression": "grel:row.record.cells[\\"Column\\"].value[1, -1].join(\\"|\\")",\
-    "onError": "keep-original",\
-    "repeat": false,\
-    "repeatCount": 10\
-  \},\
-  \{\
-    "op": "core/row-removal",\
-    "description": "Remove rows",\
-    "engineConfig": \{\
-      "facets": [\
-        \{\
-          "invert": false,\
-          "expression": "isBlank(value)",\
-          "selectError": false,\
-          "omitError": false,\
-          "selectBlank": false,\
-          "name": "First Line",\
-          "omitBlank": false,\
-          "columnName": "First Line",\
-          "type": "list",\
-          "selection": [\
-            \{\
-              "v": \{\
-                "v": true,\
-                "l": "true"\
-              \}\
-            \}\
-          ]\
-        \}\
-      ],\
-      "mode": "row-based"\
-    \}\
-  \},\
-  \{\
-    "op": "core/column-split",\
-    "description": "Split column Column by separator",\
-    "engineConfig": \{\
-      "facets": [\
-        \{\
-          "invert": false,\
-          "expression": "isBlank(value)",\
-          "selectError": false,\
-          "omitError": false,\
-          "selectBlank": false,\
-          "name": "First Line",\
-          "omitBlank": false,\
-          "columnName": "First Line",\
-          "type": "list",\
-          "selection": [\
-            \{\
-              "v": \{\
-                "v": false,\
-                "l": "false"\
-              \}\
-            \}\
-          ]\
-        \}\
-      ],\
-      "mode": "row-based"\
-    \},\
-    "columnName": "Column",\
-    "guessCellType": true,\
-    "removeOriginalColumn": true,\
-    "mode": "separator",\
-    "separator": "|",\
-    "regex": false,\
-    "maxColumns": 0\
-  \},\
-  \{\
-    "op": "core/text-transform",\
-    "description": "Text transform on cells in column First Line using expression grel:value.replace(\\"<record>\\",\\"\\")",\
-    "engineConfig": \{\
-      "facets": [],\
-      "mode": "row-based"\
-    \},\
-    "columnName": "First Line",\
-    "expression": "grel:value.replace(\\"<record>\\",\\"\\")",\
-    "onError": "keep-original",\
-    "repeat": false,\
-    "repeatCount": 10\
-  \}\
-]}
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column First Line at index 1 based on column Column 1 using expression grel:if(value.contains(\"<record>\"), value, null)",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "newColumnName": "First Line",
+    "columnInsertIndex": 1,
+    "baseColumnName": "Column 1",
+    "expression": "grel:if(value.contains(\"<record>\"), value, null)",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column First Line to position 0",
+    "columnName": "First Line",
+    "index": 0
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Column 1 to Column",
+    "oldColumnName": "Column 1",
+    "newColumnName": "Column"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column Status at index 2 based on column Column using expression grel:row.record.cells[\"Column\"].value[-1]",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "newColumnName": "Status",
+    "columnInsertIndex": 2,
+    "baseColumnName": "Column",
+    "expression": "grel:row.record.cells[\"Column\"].value[-1]",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Column using expression grel:row.record.cells[\"Column\"].value[1, -1].join(\"|\")",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "Column",
+    "expression": "grel:row.record.cells[\"Column\"].value[1, -1].join(\"|\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "facets": [
+        {
+          "invert": false,
+          "expression": "isBlank(value)",
+          "selectError": false,
+          "omitError": false,
+          "selectBlank": false,
+          "name": "First Line",
+          "omitBlank": false,
+          "columnName": "First Line",
+          "type": "list",
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ]
+        }
+      ],
+      "mode": "row-based"
+    }
+  },
+  {
+    "op": "core/column-split",
+    "description": "Split column Column by separator",
+    "engineConfig": {
+      "facets": [
+        {
+          "invert": false,
+          "expression": "isBlank(value)",
+          "selectError": false,
+          "omitError": false,
+          "selectBlank": false,
+          "name": "First Line",
+          "omitBlank": false,
+          "columnName": "First Line",
+          "type": "list",
+          "selection": [
+            {
+              "v": {
+                "v": false,
+                "l": "false"
+              }
+            }
+          ]
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Column",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "separator",
+    "separator": "|",
+    "regex": false,
+    "maxColumns": 0
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column First Line using expression grel:value.replace(\"<record>\",\"\")",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "First Line",
+    "expression": "grel:value.replace(\"<record>\",\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
