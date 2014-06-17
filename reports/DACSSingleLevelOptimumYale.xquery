@@ -7,19 +7,19 @@ import module namespace functx="http://www.functx.com"
     at "http://www.xqueryfunctions.com/xq/functx-1.0-doc-2007-01.xq";
 :)
 
-declare variable $COLLECTION as document-node()* := collection("file:///Users/staff/Documents/dlts_findingaids_eads/?recurse=yes;select=*.xml");
+declare variable $COLLECTION as document-node()* := collection("file:///C:/Users/cmc279/Desktop/Master_EAD2002_AT/?recurse=yes;select=*.xml");
 
 for $i in $COLLECTION//ead:ead
 let $referencecode := $i//ead:archdesc/ead:did/ead:unitid//text(),
 $repository := $i//ead:archdesc/ead:did/ead:repository/ead:corpname//text(),
 $title := $i//ead:archdesc/ead:did/ead:unittitle//text(),
 $date := $i//ead:archdesc/ead:did/ead:unitdate/text(),
-$c := $i//ead:c | $i//ead:c01 | $i//ead:c02 | $i//ead:c03 | $i//ead:c04 | $i//ead:c05 | $i//ead:c06 | $i//ead:c07 | $i//ead:c08,
+$c := $i//ead:c | $i//ead:c01 | $i//ead:c02 | $i//ead:c03 | $i//ead:c04 | $i//ead:c05 | $i//ead:c06 | $i//ead:c07 | $i//ead:c08 | $i//ead:c09 | $i//ead:c10 | $i//ead:c11 | $i//ead:c12,
 $nonormal := count($c/ead:did/ead:unitdate[not(@normal)]),
 $undated := count($c/ead:did/ead:unitdate[. eq 'undated']),
 $dsctitle := count($c/ead:did/ead:unittitle),
-$totaldates := count($c/ead:did/ead:unitdate),
-$totalnocontainer := count($c/ead:did[not(//ead:container)]),
+$totaldates := count($c/ead:did/ead:unitdate[not(@type="bulk")]),
+$totalnocontainer := count($c[not(/ead:c | /ead:c01 | /ead:c02 | /ead:c03 | /ead:c04 | /ead:c05 | /ead:c06 | /ead:c07 | /ead:c08 | /ead:c09 | /ead:c10 | /ead:c11 | /ead:c12)]/ead:did[not(//ead:container)]),
 $totalcomponents:= count($c),
 $totalids := count($c/@id),
 $extent1 := $i//ead:archdesc/ead:did/ead:physdesc/ead:extent[1]//text(),
@@ -33,18 +33,17 @@ $scopecontent := exists($i//ead:scopecontent),
 $bioghist := exists($i//ead:bioghist),
 $arrangement := exists($i//ead:arrangement),
 $processinfo := exists($i//ead:processinfo),
-$accessrestrict := $i//ead:archdesc/ead:accessrestrict/ead:p//text(),
-$userestrict := $i//ead:archdesc/ead:userestrict/ead:p//text(),
-$physloc := $i//ead:archdesc/ead:did/ead:physloc//text(),
-$langcode := $i//ead:archdesc/ead:did/ead:langmaterial/ead:language/@langcode,
+$accessrestrict := $i//ead:accessrestrict/ead:p//text(),
+$userestrict := $i//ead:userestrict/ead:p//text(),
+$physloc := $i//ead:physloc//text(),
+$langcode := $i//ead:archdesc/ead:did/ead:langmaterial/ead:language//text(),
 $langmaterial := $i//ead:archdesc/ead:did/ead:langmaterial//text(),
 $controlaccess := exists($i//ead:controlaccess),
 $doc := base-uri($i),
-$datemodified := $i//ead:profiledesc/ead:creation/ead:date/node(),
+$datemodified := $i//ead:revisiondesc//ead:date/node(),
 $totalseriesorsub := count($i//ead:*[contains(@level,'series')]),
 $seriessubscopecontent := count($i//ead:*[contains(@level,'series')]/ead:scopecontent),
-$index := exists($i//ead:archdesc//ead:index),
-$dscindex := exists($c//ead:index)
+$index := exists($i//ead:index)
 return
 <doc>
 <file>{$doc}</file>
@@ -79,5 +78,4 @@ return
 <seriesscopecontent>{$seriessubscopecontent}</seriesscopecontent>
 <seriesorsub>{$totalseriesorsub}</seriesorsub>
 <index>{$index}</index>
-<dscindex>{$dscindex}</dscindex>
 </doc>
