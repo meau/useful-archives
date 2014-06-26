@@ -1,0 +1,1689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="16.0">
+    <meta>
+        <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
+        <options>
+            <serialized version="16.0" xml:space="preserve">
+                <serializableOrderedMap>
+                    <entry>
+                        <String>scenario.associations</String>
+                        <scenarioAssociation-array>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../reports/doubleArrangement.xquery</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>doubleArrangement</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XQUERY</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.999-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.998-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.997-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.996-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.995-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.994-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.993-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.992-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.991-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.990-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.99-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.989-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.988-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.987-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.986-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.985-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.984-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.983-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.982-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.981-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.980-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.98-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.979-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.978-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.977-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.976-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.975-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.974-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.973-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.972-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.971-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.970-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.97-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.969-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.968-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.967-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.966-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.965-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.964-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.963-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.962-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.961-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.960-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.96-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.959-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.958-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.957-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.956-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.955-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.954-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.953-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.952-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.951-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.950-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.95-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.949-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.948-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.947-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.946-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.945-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.944-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.943-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.942-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.941-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.94-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.939-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.938-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.937-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.936-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.934-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.933-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.932-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.931-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.930-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.93-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.929-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.928-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.927-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.926-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.925-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.924-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.923-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.922-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.921-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.92-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.919-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.917-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.916-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.915-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.914-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.913-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.912-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.911-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.910-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.91-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.909-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.908-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.907-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="url">
+                                    <String>../../../../Desktop/ATExport/RU/RU.906-ead.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>YaleBPGTransform</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
+                            </scenarioAssociation>
+                        </scenarioAssociation-array>
+                    </entry>
+                    <entry>
+                        <String>scenarios</String>
+                        <scenario-array>
+                            <scenario>
+                                <field name="advancedOptionsMap">
+                                    <null/>
+                                </field>
+                                <field name="name">
+                                    <String>YaleBPGTransform</String>
+                                </field>
+                                <field name="baseURL">
+                                    <String></String>
+                                </field>
+                                <field name="footerURL">
+                                    <String></String>
+                                </field>
+                                <field name="fOPMethod">
+                                    <String>pdf</String>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <String>Apache FOP</String>
+                                </field>
+                                <field name="headerURL">
+                                    <String></String>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <String>http://www.library.yale.edu/facc/xsl/at/yale.at2yalebpgs.xsl</String>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <String>${currentFileURL}</String>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="outputFile">
+                                    <File>${cfne}</File>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <null/>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list/>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String>Saxon-PE</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array/>
+                                </field>
+                            </scenario>
+                            <scenario>
+                                <field name="advancedOptionsMap">
+                                    <null/>
+                                </field>
+                                <field name="name">
+                                    <String>doubleArrangement</String>
+                                </field>
+                                <field name="baseURL">
+                                    <String></String>
+                                </field>
+                                <field name="footerURL">
+                                    <String></String>
+                                </field>
+                                <field name="fOPMethod">
+                                    <String>pdf</String>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <String>Apache FOP</String>
+                                </field>
+                                <field name="headerURL">
+                                    <String></String>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <String>${currentFileURL}</String>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <null/>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String>XQUERY</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="outputFile">
+                                    <null/>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <null/>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean>false</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean>true</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list/>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String>Saxon-PE XQuery</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array/>
+                                </field>
+                            </scenario>
+                        </scenario-array>
+                    </entry>
+                </serializableOrderedMap>
+            </serialized>
+        </options>
+    </meta>
+    <projectTree name="TransformfromAT.xpr"/>
+</project>
