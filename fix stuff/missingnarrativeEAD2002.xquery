@@ -6,7 +6,7 @@ declare namespace xlink = "http://www.w3.org/1999/xlink";
 import module namespace functx="http://www.functx.com" 
     at "http://www.xqueryfunctions.com/xq/functx-1.0-doc-2007-01.xq";
 
-declare variable $COLLECTION as document-node()* := collection("file:///C:/Users/cmc279/Desktop/Up2DateEAD/?select=*.xml");
+declare variable $COLLECTION as document-node()* := db:open('MSSAAtExport');
 
 for $i in $COLLECTION//ead:ead
 let $doc := base-uri($i),

@@ -6,7 +6,7 @@ declare namespace xlink = "http://www.w3.org/1999/xlink";
 import module namespace functx="http://www.functx.com" 
     at "http://www.xqueryfunctions.com/xq/functx-1.0-doc-2007-01.xq";
 
-declare variable $FILE as document-node()* := doc("charcounts2002.xml");
+declare variable $FILE as document-node()* := doc("reportOneOh.xml");
 for $root in $FILE//root
 let $doc := $root/doc,
 $countBioghistOver := string-length($root/lengthBioghistOver),
