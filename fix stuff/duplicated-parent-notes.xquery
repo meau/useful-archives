@@ -10,7 +10,7 @@ declare variable $COLLECTION as document-node()* := db:open('MSSAAtExport');
 
 for $note in $COLLECTION//ead:ead//ead:note
 let $doc := base-uri($note),
-$parent-note := $note/ancestor::ead:c/ead:note
+$parent-note := $note/parent::ead:c/parent::ead:c/ead:note
 return
 <dupes>
 <doc>{$doc}</doc>
