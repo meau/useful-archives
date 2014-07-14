@@ -11,7 +11,7 @@ declare namespace xlink = "http://www.w3.org/1999/xlink";
    <document uri="{$doc}">
    {
      for $ead in $ead
-     let $folder := $ead//ead:container[@type="Folder"][number > 0]
+     let $folder := $ead//ead:container[@type="Folder"][matches(.,'^[0-9]+$')]
      let $maxfolder := max($folder)
      return 
      $maxfolder
